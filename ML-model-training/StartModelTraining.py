@@ -1,8 +1,14 @@
 from WineQualityAnomalyDetector import WineQualityAnomalyDetector
+import os
+
 
 # 2. Provide paths to your red and white wine CSV files
-red_wine_path = '/Users/maldann.gattannagari/Downloads/hackthon-final/Wine-quality-dashboad/ML-model-training/dataset/winequality-red.csv'
-white_wine_path = '/Users/maldann.gattannagari/Downloads/hackthon-final/Wine-quality-dashboad/ML-model-training/dataset/winequality-white.csv'
+base_dir = os.path.dirname(os.path.dirname(__file__))
+print("hello "+base_dir)
+red_wine_path = os.path.join(base_dir, 'ML-model-training','dataset','winequality-red.csv')
+white_wine_path = os.path.join(base_dir, 'ML-model-training','dataset','winequality-white.csv')
+
+print("red path"+red_wine_path)
 
 # 3. Create an instance of the detector
 detector = WineQualityAnomalyDetector(red_wine_path, white_wine_path)
@@ -16,8 +22,10 @@ scaled_data, feature_names = detector.scale_features()
 # 6. Extract labels for training
 labels = detector.data['defect']
 
+print("came hto labels")
+
 # 9. Train the Isolation Forest model (this may take some time for many iterations)
-detector.train_isolation_forest(scaled_data, labels, iterations=50000)
+detector.train_isolation_forest(scaled_data, labels, iterations=1)
 
 
 # 7. Visualize correlation heatmap and feature histograms
