@@ -1,0 +1,55 @@
+<!DOCTYPE html> 
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Wine Anomaly Detection Dashboard</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+      <style> body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f8f8f8; color: #333; } header { padding: 4rem 2rem; background: url("{{ url_for('static', filename='images/wine-bg.jpg') }}") no-repeat center center; background-size: cover; color: #fff; text-align: center; text-shadow: 1px 1px 6px rgba(0,0,0,0.7); } header h1 { font-size: 2.8rem; margin-bottom: 0.5rem; } header p { font-size: 1.2rem; color: #eee; } /* Layout */ .main-container { display: flex; align-items: flex-start; padding: 2rem; } .upload-container { background: #fff; padding: 1rem; border-radius: 10px; width: 280px; box-shadow: 0px 4px 20px rgba(0,0,0,0.1); margin-right: 2rem; } .file-input-wrapper { display: flex; align-items: center; justify-content: center; border: 2px dashed #ccc; border-radius: 8px; padding: 0.8rem; margin-bottom: 1rem; background: #fafafa; cursor: pointer; font-size: 0.9rem; } .file-input-wrapper:hover { border-color: #8B0000; } input[type="file"] { display: none; } .upload-container button { display: inline-flex; align-items: center; background: #8B0000; color: white; border: none; padding: 0.5rem 1rem; font-size: 0.9rem; border-radius: 6px; cursor: pointer; transition: background 0.3s; } .upload-container button:hover { background: #A52A2A; } .content-area { flex-grow: 1; } .uploaded-file { font-size: 1rem; margin: 1rem 0; color: #444; font-weight: bold; } #resultTable table { border-collapse: collapse; width: 100%; margin-top: 1rem; } #resultTable th, #resultTable td { border: 1px solid #ccc; padding: 6px 8px; text-align: center; } .anomaly { background: #f8d7da; color: #721c24; } .normal { background: #d4edda; color: #155724; } footer { margin-top: 3rem; font-size: 0.9rem; text-align: center; color: #888; } </style>
+   </head>
+   <body>
+      <header>
+         <h1>Wine Anomaly Detection</h1>
+         <p>Upload your CSV with wine data and let AI detect anomalies in wine quality</p>
+      </header>
+    <table style="width: 100%; border-collapse: collapse;">
+    <tr>
+        <td style="vertical-align: top; width: 30%; padding: 10px; border: 0px">
+        <div class="upload-container">
+            <form id="uploadForm" method="POST" enctype="multipart/form-data">
+            <label class="file-input-wrapper"> 
+                📂 <span>Select CSV File with wine data</span> 
+                <input id="file" type="file" name="file" accept=".csv" required> 
+            </label> 
+            <button type="submit">🤖 Analyze</button>
+            <div id="uploadedFileName"></div>
+            </form>
+        </div>
+        </td>
+
+        <td style="vertical-align: top; width: 70%; padding: 10px; border: 0px">
+        <div id="plots-container">
+        <table style=" padding: 10px; border: 0px">
+            <td style=" padding: 10px; border: 0px" ><div id="hist-container"></div></td>
+            <td style=" padding: 10px; border: 0px"><div id="pca-container"></div></td>
+        </table>            
+        </div>
+        </td>
+    </tr>
+    </table>
+
+    <div style=" margin-left: 15px">
+         </div style=" margin-left: 15px" id = "tables-container">
+            <div id="normal-table"> </div>
+        </br>
+            <div id="anomaly-table"> </div>
+         <div>
+    </div>
+        
+      <footer style=" margin-top: 65%">
+         <p>© 2025 Wine Anomaly Detection Project | Built with Flask & ML</p>
+      </footer>
+      <script src="{{ url_for('static', filename='js/script.js') }}"></script> 
+   </body>
+</html>
