@@ -4,11 +4,8 @@ import os
 
 # 2. Provide paths to your red and white wine CSV files
 base_dir = os.path.dirname(os.path.dirname(__file__))
-print("hello "+base_dir)
 red_wine_path = os.path.join(base_dir, 'ML-model-training','dataset','winequality-red.csv')
 white_wine_path = os.path.join(base_dir, 'ML-model-training','dataset','winequality-white.csv')
-
-print("red path"+red_wine_path)
 
 # 3. Create an instance of the detector
 detector = WineQualityAnomalyDetector(red_wine_path, white_wine_path)
