@@ -19,7 +19,6 @@ scaled_data, feature_names = detector.scale_features()
 # 6. Extract labels for training
 labels = detector.data['defect']
 
-print("came hto labels")
 
 # 9. Train the Isolation Forest model (this may take some time for many iterations)
 detector.train_isolation_forest(scaled_data, labels, iterations=1)
